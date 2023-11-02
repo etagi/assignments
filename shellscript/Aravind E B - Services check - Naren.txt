@@ -1,0 +1,14 @@
+#!/bin/bash
+
+services="tomcat jenkins docker"
+
+for svc in $services
+do
+	systemctl is-active --quiet $svc
+	if [ $? -ne 0 ]; then
+		sudo systmctl start $svc
+		echo $svc >> stoppedservices.txt
+	fi
+done
+
+mail -s "Services Stopped" abc@gmail.com < stoppedservices.txt

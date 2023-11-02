@@ -1,0 +1,15 @@
+#!/bin/bash
+
+if [ -e $1 ]; then
+	echo "$1 exists"
+	
+	if [ -f $1 ]; then
+		echo "$1 is a file"
+	elif [ -d $1 ]; then
+		echo "$1 is a directory"
+	elif [ -L $1 ]; then
+		echo "$1 is a link"
+	fi
+else
+	echo "$1 does not exist"
+fi
